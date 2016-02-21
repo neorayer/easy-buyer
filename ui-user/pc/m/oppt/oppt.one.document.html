@@ -1,0 +1,44 @@
+<table  class="model-table">
+  <tr>
+    <th></th>
+    <th>文件名</th>
+    <th>类型</th>
+    <th style="width:200px">大小</th>
+    <th></th>
+  </tr>
+  <tbody>
+    <tr ng-repeat="doc in oppt.documents" ng-init="ftInfo = FileTypeServ.GetInfo(doc.type)">
+      <td><i class="{{ftInfo.icon}}"></i></td>
+      <td>
+          <input type="text" 
+                 ng-model="doc.name" 
+                 ng-disabled="doc.$_isUploading"
+                 style="border:none;height:100%;padding-left:10px"
+                 ng-change="doc.$_isChanged=true"
+                 ng-blur="SaveDocumentsOnBlur(oppt)"
+                 ng-keypress="CheckKeyEnter($event)"
+                 >
+      </td>
+      <td>{{ftInfo.name}}</td>
+      <td>
+        <div ng-if="doc.$_isUploading" 
+             style="width:190px;margin-top:10px;margin-bottom:0"
+             class="progress progress-striped active">
+          <div class="progress-bar progress-bar-info"
+               style="width: {{doc.upPercent}}%">{{doc.upPercent}}%</div>
+        </div>
+
+        <span ng-if="doc.$_isUploading"> {{doc.upSize|bytes}} / </span>
+        <span> {{doc.size | bytes}} </span>
+      </td>
+      <td>
+        <div >
+          <a style="visibility:{{doc.$_isUploading?'hidden':'visible'}}" href ng-click="OpenDocument(doc)"><i class="fa fa-download"></i></a>
+          <a href ng-click="DeleteDocument(oppt, doc)"><i class="fa fa-remove"></i></a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr/>
+<button id="opptDocumentAddBtn" class="btn btn-success">上传</button>

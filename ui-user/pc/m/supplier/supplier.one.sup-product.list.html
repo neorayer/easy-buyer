@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-sm-5">
+    <ui-select ng-model="theProduct"
+               theme="bootstrap"
+               ng-change="ChgSelectedProduct(theProduct)"
+               >
+        <ui-select-match placeholder="从产品库中选择你提供的产品">
+          {{$select.selected.name}} 
+          {{$select.selected.casNo}} 
+          {{$select.selected.synonyms}}
+        </ui-select-match>
+        <ui-select-choices repeat="p in products|filter:$select.search">
+          <div ng-bind-html="p.name"></div>
+          <small> {{p.casNo}} {{p.synonyms}} </small>
+        </ui-select-choices>
+    </ui-select>
+  </div> <!-- col -->
+  <div class="col-sm-7">
+    <button class="btn btn-info"
+            ng-click="SaveSupProduct()">
+      加入我的产品
+    </button>
+    <span>
+      &nbsp;&nbsp;如果没有你所需的产品信息，可
+        <a ui-sref="product.one.edit({product:'new'})">创建新产品</a>
+    </span>
+  </div> <!-- col -->
+</div>
+
+
+<table class="table table-hover ">
+  <thead>
+    <tr>
+      <th>产品名</th>
+      <th>CAS No</th>
+      <th>EC No</th>
+      <th>Synonyms</th>
+      <th>报价</th>
+      <th>审核</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="sp in supProducts">
+      <td >
+        <a href ng-click="GotoDetail(sp)">{{sp.product.name}}</a>
+      </td>
+      <td>
+        <a href ng-click="GotoDetail(sp)">{{sp.product.casNo}}</a>
+      </td>
+      <td>
+        <a href ng-click="GotoDetail(sp)">{{sp.product.ecNo}}</a>
+      </td>
+      <td>
+        <div class="limit-inline" style="width:150px;">
+          <a href ng-click="GotoDetail(sp)">{{sp.product.synonyms}}</a>
+        </div>
+      </td>
+      <td>
+        <table class="table table-striped">
+          <tr ng-repeat="price in sp.prices">
+              <td class="col-xs-7">
+              {{price.minWeight}} ~ {{price.maxWeight}} kg
+              </td>
+              <td class="col-xs-5"> {{price.unitPrice}} 元/kg
+              </td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <button class="btn btn-xs btn-{{statusClassMap[sp.product.status]}}">{{sp.product.status|Dict:'ProductStatus'}}</button>
+      </td>
+      <td>
+        <a  ng-if="can.modify(product)" href ng-click="Delete(sp, true)"><i class="fa fa-trash-o"></i> </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr/>

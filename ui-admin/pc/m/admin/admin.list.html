@@ -1,0 +1,35 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>管理员姓名</th>
+      <th>修改</th>
+      <th>登录用户名</th>
+      <th>状态</th>
+      <th>备注</th>
+      <th>创建时间</th>
+      <th>删除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="admin in admins">
+      <td>{{admin.realname}}</td>
+      <td>
+        <a ui-sref="admin.one.edit({admin:admin._id})"
+           title="修改信息">
+          <i class="fa fa-pencil"></i>
+        </a>
+        <a ui-sref="admin.one.edPass({admin:admin._id})"
+           title="修改密码">
+          <i class="fa fa-key"></i>
+        </a>
+      </td>
+      <td>{{admin.username}}</td>
+      <td>{{admin.status}}</td>
+      <td>{{admin.comment}}</td>
+      <td>{{admin.createTime|date:'yyyy-MM-dd hh:mm'}}</td>
+      <td>
+        <a href ng-click="Delete(admin)"><i class="fa fa-trash"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

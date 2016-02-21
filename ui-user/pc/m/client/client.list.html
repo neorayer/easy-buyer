@@ -1,0 +1,25 @@
+<table class="table table-default">
+  <thead>
+    <tr>
+      <th>客户公司名称</th>
+      <th>简称</th>
+      <th>国家地区</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="client in clients">
+      <td><a href ng-click="GotoDetail(client)">{{client.name}}</a></td>
+      <td><a href ng-click="GotoDetail(client)">{{client.nickname}}</a></td>
+      <td><a href ng-click="GotoDetail(client)">{{client.country}}</a></td>
+      <td>
+        <a href ui-sref="client.one.edit({client: client._id})">
+          <i class="fa fa-pencil"></i>
+        </a>
+        <a href ng-click="Delete(client)">
+          <i class="fa fa-trash-o"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,111 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>产品信息</strong> 
+  </div>
+  <table class="table table-bordered">
+    <tr ng-repeat="prop in propRows" ng-if="product[prop.name]">
+      <td width="300">{{prop.title}}</td>
+      <td>{{product[prop.name]}}</td>
+    </tr>
+    <tr>
+      <td width="300">审核状态</td>
+      <td>
+        <span class="text-{{statusClassMap[product.status]}}">{{product.status|Dict:'ProductStatus'}}
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td width="300">产品创建者</td>
+      <td>{{product.creater.name}}</td>
+    </tr>
+  </table>
+</div> <!-- panel -->
+
+<form name="pricesForm">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong>报价</strong> 
+    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>最小重量</th>
+          <th>最大重量</th>
+          <th>单价(元/kg)</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="price in supProduct.prices">
+          <td>
+            <input type="Number" ng-model="price.minWeight" class="form-control">
+          </td>
+          <td>
+            <input type="Number" ng-model="price.maxWeight" class="form-control">
+          </td>
+          <td>
+            <input type="Number" ng-model="price.unitPrice" class="form-control">
+          </td>
+          <td>
+            <a class="btn btn-sm btn-danger" ng-click="DeletePrice(price)"><i class="fa fa-times"></i> 删除</a>
+          </td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td colspan="3">
+            <a class="btn btn-warning" ng-click="CreateNewPrice()"> 新增报价 </a>
+            &nbsp;
+            <a class="btn btn-primary" ng-click="SavePrices()"
+               ng-if="!pricesForm.$pristine"> 保存修改 </a>
+            &nbsp;
+            最后报价时间: {{supProduct.lastPriceTime|date:'yyyy-MM-dd hh:mm:ss'}}
+          </td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>
+
+<style type="text/css">
+.labsheet {
+  width:200px;
+  height:270px;
+  display:block;
+  float: left;
+}
+
+</style>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>化验单</strong> 
+  </div>
+  <div class="panel-body">
+    <div >
+      <div ng-repeat="ls in supProduct.labsheets"
+           class="labsheet">
+        <img src="/ui-user/pc/img/test-reports-icon-square.png">
+        <div class="text-center">
+          <button class="btn btn-success" ng-click="DownloadLabsheet(ls)">下载</button>
+          <button class="btn btn-danger" ng-click="DeleteLabsheet(ls)">删除</button>
+          <br/>
+          <span ng-if="!ls.isEdit" ng-click="ls.isEdit=true"> {{ls.name||'点击编辑名称'}} </span>
+          <input ng-if="ls.isEdit" type="text" ng-model="ls.name" ng-blur="SaveLabsheets();ls.isEdit = false">
+        </div>
+      </div>
+    </div>
+    <div>
+    <div style="clear:both">
+      <a id="labsheetUploaderBtn" 
+           class="btn btn-primary"
+           qiniu-uploader="labsheetUploaderDef"
+           >上传化验单</a>
+      </div>
+    </div>
+  </div>
+</div> <!-- panel -->
+

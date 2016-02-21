@@ -1,0 +1,48 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>产品名</th>
+      <th>CAS No</th>
+      <th>EC No</th>
+      <th>产品类别</th>
+      <th>审核</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="product in products|filter:search">
+      <td>
+        <img style="width:80px;height:80px" ng-src="{{getProductThumb(product)}}">
+      </td>
+      <td >
+        <a href ng-click="GotoDetail(product)">{{product.name}}</a>
+      </td>
+      <td><a href ng-click="GotoDetail(product)">{{product.casNo}}</a></td>
+      <td><a href ng-click="GotoDetail(product)">{{product.ecNo}}</a></td>
+
+      <td >
+        <div class="limit-inline" style="width:150px;">
+          {{categoryNameOf(product)}}
+        </div>
+      </td>
+      <td>
+        <button class="btn btn-xs btn-{{statusClassMap[product.status]}}">{{product.status|Dict:'ProductStatus'}}</button>
+      </td>
+      <td>
+        <div ng-if="can.modify(product)">
+          <button class="btn btn-round btn-xs btn-default" ng-click="GotoEdit(product)">修改</button>
+          <button class="btn btn-round btn-xs btn-default" ng-click="GotoPicture(product)">图片</button>
+          <button class="btn btn-round btn-xs btn-default" ng-click="EditPrice(product)">价格</button>
+          <button class="btn btn-round btn-xs btn-default" ng-click="GotoDocument(product)">证书/文件</button>
+          <button class="btn btn-round btn-xs btn-default" ng-click="GotoSupplier(product)">供应商</button>
+        </div>
+      </td>
+      <td>
+        <a  ng-if="can.modify(product)" href ng-click="Delete(product)"><i class="fa fa-trash-o"></i> </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-default" ui-sref="product.one.edit({product:'new'})">新建产品</button>

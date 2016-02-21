@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-sm-7">
+    <table class="table table-default table-hover">
+      <thead>
+        <tr>
+          <th>名称</th>
+          <th>公司</th>
+          <th>电话/手机</th>
+          <th>电子邮件</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="con in contacts"
+            ng-class="{warning: contact._id === con._id}"
+            ng-click="setCurContact(con)"
+            >
+          <td>{{con.fullname}}</td>
+          <td>{{con.organization}}</td>
+          <td>{{con.telephone}} {{con.mobile}}</td>
+          <td>{{con.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-sm-5 bg-warning">
+    <br/>
+    <button class="btn btn-success"
+            ng-click="createNew()">
+      新建联系人
+    </button>
+    <button class="btn btn-danger  pull-right"
+            ng-if="contact._id && contact._id !== 'new'"
+            ng-click="Delete(contact)">
+      删除
+    </button>
+    <div class="clearfix"></div>
+    <br/>
+    <form name="contactForm"
+          class="form-horizontal">
+      <div zform-row="row"
+           ng-repeat="row in formRows"
+           ng-model="formContact">
+      </div>
+    </form>
+  </div>
+
+</div>
+
+

@@ -1,0 +1,14 @@
+<html>
+<% include ../../tpl/head.part.html %>
+<script type="text/javascript">
+var ADMIN = <%- JSON.stringify(SESSION_ADMIN) %>;
+</script>
+
+<body ng-app="rhinoceros">
+  <div ng-controller="HomeController">
+    <% include nav.part.html %>
+    <div class="container-fluid">
+      <ui-view></ui-view>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,30 @@
+<div ng-init="BreadcrumbServ.Set(1, '商机')"></div>
+<table class="model-table table-hover" ng-controller="OpptController">
+  <thead>
+    <tr>
+      <td>机会主题 
+        <button class="btn btn-xs btn-default" ng-click="DialogEdit(newOppt)">创建</button>
+      </td>
+      <td>客户</td>
+      <td>客户联系人</td>
+      <td>阶段</td>
+      <td>发现时间</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="oppt in oppts">
+      <td>
+        <a href ng-click="GotoDetail(oppt)">{{oppt.name}}</a>
+      </td>
+      <td>{{Cache.get(oppt.client).name}}</td>
+      <td>{{Cache.get(oppt.contact).name}}</td>
+      <td>{{oppt.step}}</td>
+      <td>{{oppt.opptDate|date:'yy-MM-dd'}}</td>
+      <td>
+        <a href ng-click="DialogEdit(oppt)"><i class="fa fa-pencil"></i></a>
+        <a href ng-click="Delete(oppt)"><i class="fa fa-trash-o"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

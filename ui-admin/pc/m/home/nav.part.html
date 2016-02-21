@@ -1,0 +1,36 @@
+<header class=" navbar-inverse">
+  <div class="container-fluid">  
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-target="#main-navbar" data-toggle="collapse" >
+        <i class="fa fa-bars"></i>
+      </button>
+      <a href ng-click="gotoHome()" class="navbar-brand">Easy-Buyer 管理控制台</a>
+    </div>
+
+    <nav class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav">
+        <li ng-class="{active: $state.includes('dashboard')}" >
+          <a ui-sref="dashboard.cover">首页</a>
+        </li>
+        <li ng-class="{active: $state.includes('company')}" >
+          <a ui-sref="company.list">公司</a>
+        </li>
+        <li ng-class="{active: $state.includes('admin')}" >
+          <a ui-sref="admin.list">管理员</a>
+        </li>
+        <li ng-class="{active: $state.includes('user')}" >
+          <a ui-sref="user.list">用户</a>
+        </li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <p class="navbar-text">欢迎，{{ADMIN.realname}}</p>
+        </li>
+        <li>
+          <a href ng-click="signout()" > 退出 </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

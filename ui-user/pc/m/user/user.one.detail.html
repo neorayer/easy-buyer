@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <strong>基本信息</strong> 
+    </div>
+      <table class="table table-bordered">
+        <tr ng-repeat="prop in propRows" ng-if="user[prop.name]">
+          <td width="300">{{prop.title}}</td>
+          <td>{{user[prop.name]}}</td>
+        </tr>
+        <tr>
+          <td>创建时间</td>
+          <td>{{user.createTime|date:'yyyy-MM-dd hh:mm:ss'}}</td>
+        </tr>
+      </table>
+</div> <!-- boxed end -->

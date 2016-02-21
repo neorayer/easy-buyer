@@ -1,0 +1,36 @@
+<div ng-init="BreadcrumbServ.Set(1, '帐号管理')"></div>
+<table ng-init="LoadUsers(false)" class="table table-hover">
+  <thead>
+    <tr>
+      <th>电子邮件</th>
+      <th>修改</th>
+      <th>姓名</th>
+      <th>角色</th>
+      <th>公开联系人</th>
+      <th>创建时间</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in users"
+        ng-if="can.modify(user)">
+      <td>
+        <a ui-sref="user.one.detail({user:user._id})">{{user.email}}</a>
+      </td>
+      <td>
+        <button class="btn btn-round btn-xs btn-success" ui-sref="user.one.edit({user: user._id})">修改</button>
+      </td>
+      <td>
+        {{user.name}}
+      </td>
+      <td>{{user.role|Dict:'UserRole'}}</td>
+      <td>{{user.isPubContact}}</td>
+      <td>{{user.createTime|date:'yyyy-MM-dd'}}</td>
+      <td>
+        <button class="btn btn-round btn-xs btn-danger" ng-click="Delete(user)">删除</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-default"
+        ui-sref="user.one.edit({user: 'new'})">新建账户</button>

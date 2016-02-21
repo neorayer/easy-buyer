@@ -1,0 +1,42 @@
+<html>
+<% include ../../tpl/head.part.html %>
+
+<body ng-app="rhinoceros" ng-controller="PortalController">
+  <% include navbar.part.html %>
+
+<div class="container-fluid">
+
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6 "
+       ng-controller="PortalSigninController"
+       >
+    <% if (data.msg) { %>
+    <div class="alert alert-success"><%= data.msg %></div>
+    <% } %>
+    <h2 class="text-center">登录</h2>
+    <form name="theForm" 
+          class="form-horizontal"
+          novalidate >
+      <fieldset>
+        <div zform-row="row" 
+             ng-repeat="row in formRows"
+             ng-model="formSignin"></div>
+      </fieldset>
+
+      <fieldset>
+        <div zform-row="submitRow" 
+             ng-model="formSignin"></div>
+      </fieldset>
+      
+    </form>
+
+  </div>
+</div>
+
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+    <div style="line-height:34px;border-bottom:1px solid lightblue" class="row">
+      
+        <i ui-tree-handle class="fa fa-folder"></i>
+        <span>{{node.title}}</span>
+      <div class="pull-right" style="width:60px;">
+        <i class="fa fa-plus"></i>
+        <i class="fa fa-remove"></i>
+      </div>
+
+      <div class="pull-right" style="width:100px;">
+        asdf
+      </div>
+
+      
+
+    </div>
+
+    <ol ui-tree-nodes="" ng-model="node.items">
+      <li ng-repeat="node in node.items" ui-tree-node ng-include="'/ui-user/pc/m/product/tree.html'"></li>
+    </ol>

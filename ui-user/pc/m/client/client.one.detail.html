@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>基本信息</strong> 
+  </div>
+    <table class="table table-bordered">
+      <tr ng-repeat="prop in propRows" ng-if="client[prop.name]">
+        <td width="300">{{prop.title}}</td>
+        <td>{{client[prop.name]}}</td>
+      </tr>
+    </table>
+</div> <!-- boxed end -->
+
+<div class="panel panel-default"
+     ng-controller="ClientOneContactController">
+  <div class="panel-heading">
+    <strong>联系人</strong> 
+  </div>
+    <table class="table table-default table-hover">
+      <thead>
+        <tr>
+          <th>名称</th>
+          <th>公司</th>
+          <th>电话/手机</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="con in contacts"
+            ng-class="{warning: contact._id === con._id}"
+            ng-click="setCurContact(con)"
+            >
+          <td>{{con.fullname}}</td>
+          <td>{{con.organization}}</td>
+          <td>{{con.telephone}} {{con.mobile}}</td>
+          <td>{{con.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

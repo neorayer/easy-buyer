@@ -1,0 +1,71 @@
+
+<h3>公司产品电子商务网址</h3>
+<p>您公司产品电子商务网址为: </p>
+<p>
+  <input style="font-size:16px;width:500px" type="text" ng-model="mallUrl">
+  <button class="btn btn-primary" ng-click="GotoMall()">点此访问</button>
+</p>
+<p>
+  您可以将上述地址复制到公司原有的网站中，为原网站提供在线电子商务功能。
+</p>
+<br/>
+<br/>
+<br/>
+
+<style type="text/css">
+#entrances-box {
+  background-color: white;
+  padding:20px 10px;
+  border-radius: 4px;
+  margin-right: 10px;
+  height: 300px;
+} 
+
+.entrance-box {
+  width: 80px;
+  height: 80px;
+  border: 1px solid white;
+  float: left; 
+  margin-right: 30px;
+  margin-bottom: 20px;
+  cursor: pointer;
+ }
+
+ .entrance-box:hover {
+  border-color: gray;
+ }
+
+ .entrance-box .menu-icon {
+  display: block;
+  font-size: 50px;
+  margin-top: 5px;
+  text-align: center;
+ }
+
+
+
+ .entrance-box .menu-text {
+  text-align: center;
+
+ }
+</style>
+<div id="entrances-box">
+  <h3>功能入口</h3>
+  <hr/>
+  <a ng-repeat="menu in menus"
+       ng-if="!$first"
+       class="entrance-box"
+       style="background-color:{{menu.color}}"
+       ui-sref="{{menu.state}}"
+       >
+    <div class="menu-icon"><i class="{{menu.icon}}"></i></div>
+    <div class="menu-text"> {{menu.text}} </div>
+  </a>
+
+
+</div>
+
+
+
+
+

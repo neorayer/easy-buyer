@@ -1,0 +1,48 @@
+<table class="table table-default">
+  <thead>
+    <tr>
+      <th>公司名称</th>
+      <th>类型</th>
+      <th>报价记录</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="proSupplier in product.suppliers track by $index">
+      <td>
+        <a href ui-sref="supplier.one.detail({supplier:proSupplier._id})">{{proSupplier.name}}</a>
+      </td>
+      <td>{{proSupplier.businessType}}</td>
+      <td>
+        <button class="btn btn-xs btn-default" ng-click="GotoPsp(product, proSupplier)">查看</button>
+      </td>
+      <td>
+        <a href ng-click="DeleteSupplier(product, proSupplier)">
+          <i class="fa fa-trash-o"></i>
+        </a>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+<div class="row">
+  <div class="col-sm-3">
+    <ui-select ng-model="newSupplier"
+               theme="bootstrap"
+               ng-change="AddSupplier(product, newSupplier, $select)"
+               >
+        <ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+        <ui-select-choices repeat="su in suppliers|removeExistsArrayBy_id:product.suppliers|filter:$select.search">
+          <div ng-bind-html="su.name"></div>
+          <small>
+            {{su.businessType}} {{su.phone}}
+          </small>
+        </ui-select-choices>
+    </ui-select>
+  </div>
+  <div class="col-sm-9">
+        <button class="btn btn-info" 
+                ui-sref="supplier.one.edit({supplier:'new'})">创建新供应商</button>
+  </div>
+</div>
+

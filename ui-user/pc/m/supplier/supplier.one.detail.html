@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>属性</strong>
+  </div>
+  <table class="table table-bordered">
+    <tr>
+      <td width="300">审核状态</td>
+      <td>
+        <span class="text-{{statusClassMap[supplier.status]}}">{{supplier.status|Dict:'ProductStatus'}}
+        </span>
+        <span ng-if="can.opStatus(supplier)">
+          <button class="btn btn-sm btn-success"
+                  ng-click="SaveStatus(supplier, 'accepted')">
+            审核通过
+          </button>
+          <button class="btn btn-sm btn-danger"
+                  ng-click="SaveStatus(supplier, 'rejected')">
+            拒绝
+          </button>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td width="300">创建者</td>
+      <td>{{supplier.creater.name}}</td>
+    </tr>
+    <tr ng-repeat="prop in propRows" ng-if="supplier[prop.name]">
+      <td width="300">{{prop.title}}</td>
+      <td>{{supplier[prop.name]}}</td>
+    </tr>
+    <tr>
+      <td width="300">创建时间</td>
+      <td>{{supplier.createTime|date:'yyyy-MM-dd hh:mm:ss'}}</td>
+    </tr>
+    <tr>
+      <td width="300">更新时间</td>
+      <td>{{supplier.modifyTime|date:'yyyy-MM-dd hh:mm:ss'}}</td>
+    </tr>
+  </table>
+</div> <!-- boxed end -->
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>描述</strong>
+  </div>
+  <div class="panel-body" ng-bind-html="supplier.description"></div>
+</div> <!-- boxed end -->

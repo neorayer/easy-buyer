@@ -1,0 +1,15 @@
+<div style="height:10px"></div>
+<ul class="nav nav-tabs">
+  <li class="disabled">
+    <a >
+      <strong class="text-danger">{{supplier.name}}</strong>
+    </a>
+  </li>
+  <li ng-repeat="tab in supplierOneTabs" 
+      ng-if="!tab.isDisabled"
+      ng-class="{active: ($state.includes(tab.stateGroup))}">
+    <a ui-sref="{{tab.state}}">{{tab.text}}</a>
+  </li>
+</ul>
+<br/>
+<ui-view></ui-view>

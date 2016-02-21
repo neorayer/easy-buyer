@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-sm-3">
+    <br/>
+    <ztree-list-group items="categorys"
+                      def="cateTreeDef"
+                      ></ztree-list-group>
+  </div>
+  <div class="col-sm-9">
+    <h2>{{curItem.name}}</h2>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong>子分类</strong>
+      </div>
+      <table class="table table-hover">
+        <tr ng-repeat="child in curItem.children">
+          <td>
+            <i class="fa fa-folder-o"></i> <a href ng-click="openNode(child)">{{child.name}}</a>
+          </td>
+          <td width="1">
+            <a class="btn btn-xs btn-danger"
+               ng-click="Delete(child)">
+               删除
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" 
+                   ng-model="newItem.name" 
+                   placeholder="输入新建子分类名称"
+                   class="form-control">
+          </td>
+          <td>
+            <a class="btn btn-success"
+               ng-click="CreateChild(newItem.name)">新建子分类</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div ng-if="!curItem.isRoot" class="panel panel-default">
+      <div class="panel-heading">
+        <strong>包含产品</strong>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th>产品名</th>
+            <th>CAS No</th>
+            <th>EC No</th>
+            <th>审核</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="product in products|filter:search|filter:{category:curItem._id}">
+            <td>
+              <img style="width:80px;height:80px" ng-src="{{getProductThumb(product)}}">
+            </td>
+            <td >
+              <a href ui-sref="product.one.detail({product:product._id})">{{product.name}}</a>
+            </td>
+            <td><a href ui-sref="product.one.detail({product:product._id})">{{product.casNo}}</a></td>
+            <td><a href ui-sref="product.one.detail({product:product._id})">{{product.ecNo}}</a></td>
+            <td>
+              <button class="btn btn-xs btn-{{statusClassMap[product.status]}}">{{product.status|Dict:'ProductStatus'}}</button>
+            </td>
+            <td>
+
+            </td>
+          </tr>
+          <tr>
+            <td  colspan="6">
+              <button class="btn btn-default" ng-click="GotoNewProductEdit()">新建产品</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+  </div>
+</div>

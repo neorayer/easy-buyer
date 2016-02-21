@@ -1,0 +1,37 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>用户名(Email)</th>
+      <th>修改</th>
+      <th>姓名</th>
+      <th>电话</th>
+      <th>公司</th>
+      <th>创建时间</th>
+      <th>删除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in users| filter: search">
+      <td>
+        <a ui-sref="user.one.detail({user:user._id})">{{user.email}}</a>
+      </td>
+      <td>
+        <a ui-sref="user.one.edit({user:user._id})"
+           title="修改信息">
+          <i class="fa fa-pencil"></i>
+        </a>
+        <a ui-sref="user.one.edPass({user:user._id})"
+           title="修改密码">
+          <i class="fa fa-key"></i>
+        </a>
+      </td>
+      <td>{{user.name}}</td>
+      <td>{{user.tel}}</td>
+      <td>{{user.company.name}}</td>
+      <td>{{user.createTime|date:'yyyy-MM-dd hh:mm'}}</td>
+      <td>
+        <a href ng-click="Delete(user)"><i class="fa fa-trash"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

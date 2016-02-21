@@ -1,0 +1,45 @@
+<div class="row" >
+  <div class="col-sm-3">
+        <button class="navbar-btn btn btn-default" 
+                ng-click="goBack()">
+          <i class="fa fa-chevron-left">
+          </i>
+          返回
+        </button>
+  </div>
+  <div class="col-sm-6">
+    <h2>{{isNew ? '新建管理员':'修改'}}
+      <small>{{formAdmin.realname}}</small>
+    </h2>
+    <form name="theForm" 
+          class="form-horizontal"
+          ng-controller="AdminOneEditController"
+          novalidate >
+      <fieldset>
+        <legend>必填</legend>
+        <div zform-row="row" 
+             ng-repeat="row in formAdminRows1"
+             ng-model="formAdmin"></div>
+      </fieldset>
+
+      <fieldset ng-if="isNew">
+        <div zform-row="row" 
+             ng-repeat="row in formAdminRows2"
+             ng-model="formAdmin"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>选填</legend>
+        <div zform-row="row" 
+             ng-repeat="row in formAdminRows3"
+             ng-model="formAdmin"></div>
+      </fieldset>
+
+      <fieldset>
+        <div zform-row="submitRow" 
+             ng-model="formAdmin"></div>
+      </fieldset>
+
+    </form>
+  </div>
+</div>

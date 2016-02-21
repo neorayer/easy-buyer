@@ -1,0 +1,33 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>公司名称</th>
+      <th>修改</th>
+      <th>简称</th>
+      <th>创建时间</th>
+      <th>删除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="co in companys | filter: search">
+      <td>
+        <a ui-sref="company.one.detail({company:co._id})">{{co.name}}</a>
+      </td>
+      <td>
+        <a ui-sref="company.one.edit({company:co._id})"
+           title="修改信息">
+          <i class="fa fa-pencil"></i>
+        </a>
+        <a ui-sref="company.one.edPass({company:co._id})"
+           title="修改密码">
+          <i class="fa fa-key"></i>
+        </a>
+      </td>
+      <td>{{co.nickname}}</td>
+      <td>{{co.createTime|date:'yyyy-MM-dd hh:mm'}}</td>
+      <td>
+        <a href ng-click="Delete(co)"><i class="fa fa-trash"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

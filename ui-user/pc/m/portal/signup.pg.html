@@ -1,0 +1,54 @@
+<html>
+<% include ../../tpl/head.part.html %>
+
+<body ng-app="rhinoceros" ng-controller="PortalController">
+  <% include navbar.part.html %>
+
+<div class="container-fluid">
+
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-8"
+       ng-controller="PortalSignupController"
+       >
+    <h2 class="text-center">贸易公司注册</h2>
+    <form name="theForm" 
+          class="form-horizontal"
+          novalidate >
+      <fieldset>
+        <legend>公司信息</legend>
+        <div zform-row="row" 
+             ng-repeat="row in formComRows"
+             ng-model="formSignup"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>登录帐号</legend>
+        <div zform-row="row" 
+             ng-repeat="row in formAccRows"
+             ng-model="formSignup"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>联系人</legend>
+        <div zform-row="row" 
+             ng-repeat="row in formContactRows"
+             ng-model="formSignup"></div>
+      </fieldset>
+
+      <fieldset>
+        <div zform-row="submitRow" 
+             ng-model="formSignup"></div>
+      </fieldset>
+
+    </form>
+
+  </div>
+</div>
+
+
+</div>
+
+
+
+</body>
+</html>

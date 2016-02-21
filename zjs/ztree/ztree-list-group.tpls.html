@@ -1,0 +1,30 @@
+<table class="table">
+  <tr>
+    <td>
+      <a 
+         ng-class="{active:isSelected(rootItem)}"
+         href ng-click="onClick(rootItem)"
+        >
+        <span ng-bind="def.rootName"></span>
+      </a>      
+    </td>
+  </tr>
+  <tr ng-repeat="item in items|filter:search" 
+         ng-if="isVisible(item)"
+         id="item-{{item._id}}"
+         ng-class="{active:isSelected(item)}"
+      >
+    <td style="border:none">
+      <a href ng-click="toggle(item)"
+        <i class="{{item.nodeIcon}}"
+           ng-style="{'margin-left':item.depth * 20 + 'px'}"
+           ></i>
+      </a>
+
+      <a ng-click="onClick(item)" href >
+          <span ng-bind="getItemLabel(item)"></span>
+      </a>
+    </td>
+  </tr>
+</table>
+

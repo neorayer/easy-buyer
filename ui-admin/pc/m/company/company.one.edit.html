@@ -1,0 +1,60 @@
+<div class="row" >
+  <div class="col-sm-3">
+        <button class="navbar-btn btn btn-default" 
+                ng-click="goBack()">
+          <i class="fa fa-chevron-left">
+          </i>
+          返回
+        </button>
+  </div>
+  <div class="col-sm-6">
+    <h2>{{isNew ? '新建公司':'修改'}}
+      <small>{{formCompany.name}}</small>
+    </h2>
+    <form name="theForm" 
+          class="form-horizontal"
+          ng-controller="CompanyOneEditController"
+          novalidate >
+      <fieldset>
+        <legend>公司信息</legend>
+        <div zform-row="row" 
+             ng-repeat="row in formComRows"
+             ng-model="formCompany"></div>
+      </fieldset>
+
+      <fieldset ng-if="isNew">
+        <legend>管理员帐号</legend>
+        <div zform-row="row" 
+             ng-repeat="row in formAccRows"
+             ng-model="formCompany"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>联系人</legend>
+        <div zform-row="row" 
+             ng-repeat="row in formContactRows"
+             ng-model="formCompany"></div>
+      </fieldset>
+
+      <fieldset>
+        <div zform-row="submitRow" 
+             ng-model="formCompany"></div>
+      </fieldset>
+
+      <div class="alert {{alert.class}} myfade" ng-if="alert.isShow">{{alert.text}}</div>
+ 
+    </form>
+  </div>
+</div>
+<style type="text/css">
+  /* The starting CSS styles for the enter animation */
+.myfade.ng-leave {
+  transition:0.5s linear all;
+  opacity:1;
+}
+
+/* The finishing CSS styles for the enter animation */
+.myfade.ng-leave.ng-leave-active {
+  opacity:0;
+}
+</style>

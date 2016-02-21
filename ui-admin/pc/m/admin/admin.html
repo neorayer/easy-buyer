@@ -1,0 +1,23 @@
+<div class="navbar navbar-default"> 
+<div class="container-fluid">
+  <nav class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li ng-class="{active:('company.list'|includedByState)}"><a ui-sref="admin.list">管理员列表</a></li>
+      <li> </li>
+      <li>
+        <button class="navbar-btn btn btn-default" 
+                ui-sref="admin.one.edit({admin:'new'})">新建</button>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+
+      </li>
+    </ul>
+  </nav>
+</div>
+
+</div>
+
+
+<ui-view></ui-view>

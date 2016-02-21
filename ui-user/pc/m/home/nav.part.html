@@ -1,0 +1,22 @@
+<nav id="main-navbar" class="navbar navbar-inverse navbar-fixed-top left-toggle-navbar" >
+  <div class="container-fluid">  
+      <button type="button" 
+              class="navbar-toggle collapsed"
+              ng-click="toggleMenu()"
+              ><i class="fa fa-bars"></i></button>
+    <div class="navbar-header">
+      <a href ng-click="gotoHome()" class="navbar-brand"> Easy-Buyer 管理系统 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href>欢迎, {{USER.name}}</a></li>
+        <li>
+          <a href ng-click="signout()" > 退出 </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="navbar" style="margin:0"></div>

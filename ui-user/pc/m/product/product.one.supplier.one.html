@@ -1,0 +1,35 @@
+
+<h1>报价记录</h1>
+<hr/>
+<label>供应商:</label> {{supplier.name}}
+<br/>
+<label>产品: </label>{{product.name}} 
+<hr/>
+<div ng-repeat="psp in psps">
+  <div class="clearfix">
+    <h4 style="float:left">{{psp.updateTime|date:'yyyy-M-d hh:mm:ss'}}</h4>
+    <div class="pull-right">
+        <a href ng-click="psp.$_isEditing=true">
+          <i class="fa fa-pencil"></i>
+        </a>
+        <a href ng-click="DeletePsp(psp)">
+          <i class="fa fa-trash-o"></i>
+        </a>
+    </div>
+  </div>
+  <pre ng-if="!psp.$_isEditing">{{psp.content}}</pre>
+  <div ng-if="psp.$_isEditing" ng-init="psp.$_formPsp=Copy(psp)">
+    <textarea ng-model="psp.$_formPsp.content"
+              class="psp-editor">
+    </textarea>
+    <button class="btn btn-info" ng-click="SavePsp(product, supplier, psp.$_formPsp)">保存</button>
+    <button class="btn btn-default" ng-click="psp.$_isEditing=false">取消</button>
+  </div>
+
+</div>
+
+<h4>新增报价记录</h4>
+<textarea ng-model="formPsp.content"
+          class="psp-editor"">
+</textarea>
+<button class="btn btn-info" ng-click="SavePsp(product, supplier, formPsp)">保存</button>

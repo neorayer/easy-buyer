@@ -1,0 +1,80 @@
+
+      <table class="table table-default">
+        <thead>
+          <tr>
+            <th style="width:30px"></th>
+            <th>SKU-Pack Size</th>
+            <th>报价类型</th>
+            <th>发货区域 (<a href ui-sref="shipping.destArea.list" >编辑</a>)</th>
+            <th>价格(USD)</th>
+          </tr>
+        </thead>
+        <tbody ng-repeat-start="sku in product.skus">
+          <tr ng-mouseover="sku.isHover=true" ng-mouseleave="sku.isHover=false" ng-repeat="price in sku.prices">
+            <!-- remove btn -->
+            <td rowspan="{{sku.prices.length}}"
+                ng-if="$index === 0"> 
+              <a href ng-click="DeleteSku(product, sku)">
+                <i ng-if="sku.isHover" class="fa fa-remove"></i>
+              </a>
+            </td>
+            <!-- sku name -->
+            <td rowspan="{{sku.prices.length}}"
+                ng-if="$index===0"> 
+              <input type="text" 
+                     ng-model="sku.name" 
+                     ng-blur="SaveSku(product)">
+            </td>
+            <!-- price.priceType -->
+            <td>
+              <select ng-model="price.priceType" 
+                      ng-change="SaveSku(product)">
+                <option>FOB</option> 
+                <option>CIF</option> 
+                <option>CNF</option> 
+              </select>
+            </td>
+            <!-- price.destArea -->
+            <td> 
+              <select ng-if="price.priceType !== 'FOB'"
+                      ng-model="price.destArea"
+                      ng-change="SaveSku(product)"
+                      ng-options="destArea._id as destArea.name for destArea in destAreas">
+              </select>
+            </td>
+            <!-- price.value -->
+            <td> 
+              <div class="input-group" style="width:150px">
+                <span class="input-group-addon">$</span>
+                  <input type="text" 
+                         class="form-control" 
+                        ng-model="price.value"
+                        ng-blur="SaveSku(product)"
+                        >
+              </div>
+            </td>
+            <td>
+              <a ng-if="sku.prices.length > 1"
+                 href ng-click="DeleteSkuPrice(product, sku, price)">
+                <i class="fa fa-remove"></i>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>
+              <button class="btn btn-xs btn-default"
+                      ng-click="AddSkuPrice(product, sku)">
+                <i class="fa fa-plus"></i>增加报价
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tbody ng-repeat-end>
+          <tr>
+            <td class="seperator" colspan="6"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-md btn-success" ng-click="AddSku(product)">增加SKU</button>

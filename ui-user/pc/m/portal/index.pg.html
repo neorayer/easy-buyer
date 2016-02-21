@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<% include ../../tpl/head.part.html %>
+
+<body ng-app="rhinoceros" ng-controller="PortalController">
+  <% include navbar.part.html %>
+
+  <div class="container-fluid">
+    <div class="jumbotron">
+      <h2 class="text-center">Easy-Buyer 医药化工贸易专业服务平台</h2>
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-4">
+          <input type="text" 
+                 class="form-control input-lg"
+                 ng-model="emailOrMobile"
+                 placeholder="输入邮箱或手机" >
+        </div>
+        <div class="col-sm-2">
+          <a href ng-click="gotoSignup({emailOrMobile: emailOrMobile})" 
+             class="btn btn-primary btn-lg btn-block"> 立即注册 </a>
+        </div>
+        <div class="col-sm-3">
+          <a ng-click="gotoSignin()"  
+             class="btn btn-lg">登录</a>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+
+<table st-table="countries" class="table table-hover">
+  <thead>
+    <tr>
+      <td colspan="1">
+        <input type="text" 
+               class="form-control"
+               placeholder="过滤：请输入关键词"
+               ng-model="$search"
+                >
+      </td>
+      <td colspan="3">
+        <button class="btn btn-default"
+                ng-click="$search = ''">
+          <i class="fa fa-times"></i>
+          清除过滤条件
+        </button>
+      </td>
+    </tr>
+  </thead>
+
+  <thead>
+    <tr>
+      <th st-sort="cn">国家/地区</th>
+      <th st-sort="name" st-sort-default="true">英文名</th>
+      <th st-sort="code">简码</th>
+      <th >分区</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="d in dests|filter:$search">
+      <td>{{d.cn}}</td>
+      <td>{{d.name}}</td>
+      <td>{{d.code}}</td>
+      <td>
+        <select ng-model="d.zone" 
+                ng-options="zone._id as zone.name for zone in zones"
+                ng-change="SaveDestZone(d)"
+                >
+        </select>
+      </td>
+    </tr>
+  </tbody>
+</table>

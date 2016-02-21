@@ -1,0 +1,30 @@
+<div class="row" >
+  <div class="col-sm-3">
+        <button class="navbar-btn btn btn-default" 
+                ng-click="goBack()">
+          <i class="fa fa-chevron-left">
+          </i>
+          返回
+        </button>
+  </div>
+  <div class="col-sm-6">
+    <h2>修改密码
+      <small>{{formAdmin.username}} {{formAdmin.realname}}</small>
+    </h2>
+    <form name="theForm" 
+          class="form-horizontal"
+          novalidate >
+
+      <fieldset>
+        <div zform-row="row" 
+             ng-repeat="row in formPassRows"
+             ng-model="formPass"></div>
+      </fieldset>
+
+      <fieldset>
+        <div zform-row="submitRow" 
+             ng-model="formPass"></div>
+      </fieldset>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+      <div class="row">
+        <div class="col-md-2">主要产品：</div> <div class="col-md-10"></div> 
+        <div class="col-md-2">地点：</div> <div class="col-md-10">{{supplier.address}}</div>
+        <div class="col-md-2">商业类型：</div> <div class="col-md-10">{{supplier.businessType}}</div>
+        <div class="col-md-2">电话：</div> <div class="col-md-10">{{supplier.phone}}</div> 
+        <div class="col-md-2">网站：</div> <div class="col-md-10">{{supplier.webiste}}</div>
+        <div class="col-md-2">公司创建年：</div> <div class="col-md-10">{{supplier.yearEstablished}}</div>
+        <div class="col-md-2">开始出口年：</div> <div class="col-md-10">{{supplier.yearStartExporting}}</div>
+        <div class="col-md-2">雇员规模：</div> <div class="col-md-10">{{supplier.numberOfEmployees}}</div>
+      </div>
+
+
+                <div ng-repeat="pic in supplier.pictures" href
+             style="position:relative;display:block;float:left;margin-right:4px;margin-bottom:4px;"
+          >
+            <img class="thumb" 
+                 ng-src="{{pic.url}}" 
+                 ng-class="{selected:supplier.picSelected === pic}"
+                 ng-mouseover="supplier.picSelected = pic">
+            <div class="topright-circle"><i class="fa fa-close"></i></div>
+          </div>

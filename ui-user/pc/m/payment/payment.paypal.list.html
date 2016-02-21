@@ -1,0 +1,31 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>帐号名称</th>
+      <th></th>
+      <th>授权用户名</th>
+      <th>授权密码</th>
+      <th>授权令牌</th>
+      <th>余额</th>
+      <th>状态</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="paypal in paypals">
+      <td>{{paypal.name}}</td>
+      <td>
+        <a ui-sref="payment.paypal.one.edit({paypal:paypal._id})"><i class="fa fa-pencil"></i></a>
+      </td>
+      <td>{{paypal.username}}</td>
+      <td>{{paypal.password}}</td>
+      <td>{{paypal.token}}</td>
+      <td>{{paypal.balance}}</td>
+      <td>{{paypal.status}}</td>
+      <td>
+        <a href ng-click="Delete(paypal)"><i class="fa fa-trash-o"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-success" ui-sref="payment.paypal.one.edit({paypal:'new'})">新增Paypal帐号</button>
