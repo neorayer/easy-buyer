@@ -6,7 +6,6 @@ app.controller('HomeController', function(
                 )  {
     $scope.USER = USER;
     $scope.$state = $state;
-    console.log($state)
 
     $scope.gotoHome = function() {
         document.location = 'index?' + Math.random() 
@@ -61,7 +60,7 @@ app.controller('HomeController', function(
         {
             text: '物流', 
             color:'orange', 
-            state: 'shipping.price',
+            state: 'shipping.list',
             stateGroup: 'shipping',
             icon: 'fa fa-plane',
         },
@@ -75,7 +74,7 @@ app.controller('HomeController', function(
         {
             text: '支付管理', 
             color:'lightred', 
-            state: 'payment.paypal.list',
+            state: 'payment.bankacc.list',
             stateGroup: 'payment',
             icon: 'fa fa-credit-card',
         }

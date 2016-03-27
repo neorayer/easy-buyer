@@ -1,7 +1,7 @@
 'use strict'
 
 var mongoose = require('mongoose')
-    , Message = mongoose.model('Message')
+    , Shipping = mongoose.model('Shipping')
     , Q = require('q')
     
     , _ = require('lodash')
@@ -20,7 +20,6 @@ exports.Update = function(req, res) {
     var _id = set._id;
     delete set._id;
     delete set.company;
-    delete set.receiver;
 
     var unset;
     if (set._unset) {
@@ -41,37 +40,33 @@ exports.Update = function(req, res) {
 
     var condition = {_id: _id, company: req.session.company};
 
-    return Message.findOneAndUpdate(condition, doc, {new: true}).exec();
+    return Shipping.findOneAndUpdate(condition, doc, {new: true}).exec();
 }
 
 exports.Create = function(req, res) {
-    var product = new Message(req.body);
-    product.company = req.session.company;
+    var shipping = new Shipping(req.body);
+    shipping.company = req.session.company;
 
-    return product.Save();
+    return shipping.Save();
 }
 
 exports.Search = function(req, res) {
-    var condition = {
-        company: req.session.company,
-        owner: req.session.user._id,
-        mbox: req.query.mbox,
-    };
-
+    var condition = {company: req.session.company};
+    _.extend(condition, req.query);
+    _
     var fields = null;
     var option = {
         sort: {created: 1}, 
         lean: true,
     };
-
-    return Message.find(condition, fields, option).exec();
-
+    return Shipping.find(condition, fields, option).exec();
 }
 
 
 exports.Delete = function(req, res) {
-    return Message.findOneAndRemove({
+    return Shipping.findOneAndRemove({
         _id: req.params.id, 
         company: req.session.company
     }).exec();
+
 }

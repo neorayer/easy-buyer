@@ -300,7 +300,6 @@ Array.prototype.SaveOneByKey = function(key, item) {
 
     var cond = {};
     cond[key] = item[key];
-
     this.SaveOneByCondition(cond, item);
 }
 

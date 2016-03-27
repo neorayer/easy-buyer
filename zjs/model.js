@@ -110,8 +110,9 @@ var InitModelFactory = function(app) {
 
         RS.prototype._updateLocal = function(model) {
             //更新本地array
-            if ($rootScope[this.arrayName])
+            if ($rootScope[this.arrayName]) {
                 $rootScope[this.arrayName].SaveOneByKey('_id', model);
+            }
 
             //存入Cache
             Cache.put(model);
@@ -159,7 +160,9 @@ var InitModelFactory = function(app) {
             }
 
             if (!rsc[conKey])
-                $rootScope[_an] = rsc[conKey] = [];
+                rsc[conKey] = [];
+
+            $rootScope[_an] = rsc[conKey];
 
             //接下来向服务器发起请求
 

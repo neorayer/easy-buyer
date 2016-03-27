@@ -49,4 +49,5 @@ app.config(function($stateProvider){
     sc.createStates('mbox', 'mbox.one.message');
     sc.createStates('payment', 'payment');
     sc.createStates('payment', 'payment.paypal');
+    sc.createStates('payment', 'payment.bankacc');
 });
