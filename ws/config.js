@@ -2,7 +2,6 @@
 
 var fs = require('fs')
     , path = require('path')
-    , uuid = require('uuid')
     ;
 
 

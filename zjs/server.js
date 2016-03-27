@@ -152,37 +152,37 @@ exports = module.exports.Start = function() {
         if (ctl.Search) {
             var route = prefix + '/' + name; 
             app.get   (route, jsonpWrap(ctl.Search));
-            console.log('   :get    ' + route);
+            //console.log('   :get    ' + route);
         }
         if (ctl.Save) {
             var route = prefix + '/' + name; 
             app.post  (route, jsonpWrap(ctl.Save));
-            console.log('   :post   ' + route);
+            //console.log('   :post   ' + route);
         }
         if (ctl.Read) {
             var route = prefix + '/' + name + '/:id'; 
             app.get   (route, jsonpWrap(ctl.Read));
-            console.log('   :get    ' + route);
+            //console.log('   :get    ' + route);
         }
         if (ctl.Delete) {
             var route = prefix + '/' + name + '/:id'; 
             app.delete(route, jsonpWrap(ctl.Delete));
-            console.log('   :delete ' + route);
+            //console.log('   :delete ' + route);
         }
         if (ctl.GetRender) {
             var route = prefix + '/' + name;
             app.get(route, ejsWrap(ctl.GetRender));
-            console.log('   :get(render) ' + route);
+            //console.log('   :get(render) ' + route);
         }
         if (ctl.GetRender_1) {
             var route = prefix + '/' + name + '/:arg1';
             app.get(route, ejsWrap(ctl.GetRender_1));
-            console.log('   :get(render_1) ' + route);
+            //console.log('   :get(render_1) ' + route);
         }
         if (ctl.PostRender) {
             var route = prefix + '/' + name;
             app.get(route, ejsWrap(ctl.PostRender));
-            console.log('   :post(render) ' + route);
+            //console.log('   :post(render) ' + route);
         }
     }
 
