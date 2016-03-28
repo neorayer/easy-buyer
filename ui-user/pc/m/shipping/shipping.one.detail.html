@@ -1,3 +1,19 @@
-<div style="background: gray">
-<h1>Shipping Detail</h1>
-</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>基本信息</strong>
+  </div>
+  <table class="table table-bordered">
+    <tr>
+      <td width="300">物流名称</td>
+      <td>{{shipping.name}}</td>
+    </tr>
+    <tr>
+      <td width="300">类型</td>
+      <td>{{shipping.type|Dict:'ShippingType'}}</td>
+    </tr>
+    <tr>
+      <td width="300">品牌</td>
+      <td>{{shipping.brand}}</td>
+    </tr>
+  </table>
+</div> <!-- boxed end -->

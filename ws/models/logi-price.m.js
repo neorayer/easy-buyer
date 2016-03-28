@@ -12,10 +12,14 @@ var LogiPriceSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Company',
     },
-    minWeight: Number,
-    maxWeight: Number,
-    priceType: String,  // 'total' or 'kg' 
-    priceSet: Object, //{ zone1: 123, zon2: 2343, zone3: 3434}
+    shipping: {
+        type: Schema.Types.ObjectId,
+        ref: 'Shipping',
+    },
+    min: Number,
+    max: Number,
+    priceType: String,  // 'total', 'kg' , 'stere'
+    priceSet: Object, //{ zone1: 123, zone2: 2343, zone3: 3434}
 });
 
 

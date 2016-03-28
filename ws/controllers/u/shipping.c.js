@@ -64,9 +64,11 @@ exports.Search = function(req, res) {
 
 
 exports.Delete = function(req, res) {
-    return Shipping.findOneAndRemove({
+    return Shipping.findOne({
         _id: req.params.id, 
         company: req.session.company
-    }).exec();
+    }).exec().then(function(shipping){
+        return shipping.Delete();
+    });
 
 }

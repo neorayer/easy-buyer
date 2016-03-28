@@ -51,7 +51,10 @@ exports.Create = function(req, res) {
 }
 
 exports.Search = function(req, res) {
-    var condition = {company: req.session.company};
+    var condition = {
+        company: req.session.company,
+        shipping: req.query.shipping,
+    };
     var fields = null;
     var option = {
         sort: {created: 1}, 

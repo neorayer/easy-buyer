@@ -25,20 +25,22 @@
       <th st-sort="name" st-sort-default="true">英文名</th>
       <th st-sort="code">简码</th>
       <th >分区</th>
+      <th >分区ID</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="d in dests|filter:$search">
-      <td>{{d.cn}}</td>
-      <td>{{d.name}}</td>
-      <td>{{d.code}}</td>
-      <td>
+      <td >{{d.cn}}</td>
+      <td >{{d.name}}</td>
+      <td >{{d.code}}</td>
+      <td >
         <select ng-model="d.zone" 
                 ng-options="zone._id as zone.name for zone in zones"
                 ng-change="SaveDestZone(d)"
                 >
         </select>
       </td>
+      <td >{{d.zone}}</td>
     </tr>
   </tbody>
 </table>

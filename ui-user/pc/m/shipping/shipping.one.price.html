@@ -1,0 +1,150 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>计价方式描述 —— {{shipping.type|Dict:'ShippingType'}}</strong>
+  </div>
+  <div class="panel-body">
+    <div ng-if="shipping.type==='express'">
+      包裹价分为20kg以下总价计算法，和20kg以上单价计算法。例如区域1下，若货物重量为19.35kg，则按下表[1区:20]所设运价计算。若货物超过20kg，例如运送26kg货物到香港，则查询下表底部对应每公斤运价 x 实际重量计算。
+    </div>
+    <div ng-if="shipping.type==='air'">
+      空运分为首重价（7kg以下）和超首重单价。一般以公斤（KG）为计价单位。例如0.1KG 货物与5KG货物运到印度孟买，为相同运价750元。凡是重量超过7kg的货物，都按每公斤单价乘以货物实际毛重计算运价。
+空运计价等级一般分为：首重7KG以下，7-45KG，45KG-100KG，100KG-499KG，500kg-999KG，1000kg以上，等。
+    </div>
+    <div ng-if="shipping.type==='ocean'">
+      运价格均为单价，以单个立方为计价单位。例如货物有3个立方，运费单价为10美金/立方。则运价为3x10x美元汇率。
+    </div>
+  </div>
+</div> <!-- boxed end -->
+
+<table ng-if="shipping.type === 'air'" class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>重量</th>
+      <th ng-repeat="zone in zones">{{zone.name}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="lp in logiPrices|filter:{priceType: 'total'}">
+      <td class="bg-warning"> {{lp.max}} </td>
+      <td ng-repeat="zone in zones">
+        <input type="number" 
+               class="form-control" 
+               style="border:none;padding:2px" 
+               min="0"
+               step="0.01"
+               ng-model="lp.priceSet[zone._id]"
+               ng-blur="SavePrice(lp)"
+               >
+      </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td colspan="{{zones.length + 2}}" 
+          class="bg-warning">以下为每公斤单价（乘以快件总重量，向上取整至整公斤）</td>
+    </tr>
+    <tr ng-repeat="lp in logiPrices|filter:{priceType: 'kg'}">
+      <td class="bg-warning">{{lp.min}}~{{lp.max}}</td>
+      <td ng-repeat="zone in zones">
+        <input type="number" 
+               class="form-control" 
+               style="border:none;padding:2px" 
+               min="0"
+               step="0.01"
+               ng-model="lp.priceSet[zone._id]"
+               ng-blur="SavePrice(lp)"
+               >
+      </td>
+      <td >
+        <a ng-show="false" class="btn btn-xs btn-danger" ng-click="Delete(lp)">删除</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table ng-if="shipping.type === 'ocean'" class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>体积(立方米)</th>
+      <th ng-repeat="zone in zones">{{zone.name}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="lp in logiPrices|filter:{priceType: 'stere'}">
+      <td class="bg-warning"> {{lp.max}} </td>
+      <td ng-repeat="zone in zones">
+        <input type="number" 
+               class="form-control" 
+               style="border:none;padding:2px" 
+               min="0"
+               step="0.01"
+               ng-model="lp.priceSet[zone._id]"
+               ng-blur="SavePrice(lp)"
+               >
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table ng-if="shipping.type === 'express'" class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>重量(kg)</th>
+      <th ng-repeat="zone in zones">{{zone.name}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="lp in logiPrices|filter:{priceType: 'total'}">
+      <td class="bg-warning"> {{lp.max}} </td>
+      <td ng-repeat="zone in zones">
+        <input type="number" 
+               class="form-control" 
+               style="border:none;padding:2px" 
+               min="0"
+               step="0.01"
+               ng-model="lp.priceSet[zone._id]"
+               ng-blur="SavePrice(lp)"
+               >
+      </td>
+      <td>
+        <a ng-show="false"  class="btn btn-xs btn-danger" ng-click="Delete(lp)">删除</a>
+      </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td colspan="{{zones.length + 2}}" 
+          class="bg-warning">以下为每公斤单价（乘以快件总重量，向上取整至整公斤）</td>
+    </tr>
+    <tr ng-repeat="lp in logiPrices|filter:{priceType: 'kg'}">
+      <td class="bg-warning">{{lp.min}}~{{lp.max}}</td>
+      <td ng-repeat="zone in zones">
+        <input type="number" 
+               class="form-control" 
+               style="border:none;padding:2px" 
+               min="0"
+               step="0.01"
+               ng-model="lp.priceSet[zone._id]"
+               ng-blur="SavePrice(lp)"
+               >
+      </td>
+      <td >
+        <a ng-show="false" class="btn btn-xs btn-danger" ng-click="Delete(lp)">删除</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div>
+  <!-- button class="btn btn-default"
+          ng-click="AddNewPrice()">新增</button --> 
+  <button class="btn btn-danger pull-right"
+          ng-click="RemoveAllLogiPrices()"> 清除所有数据 </button>
+</div>
+
+<button ng-if="logiPrices.length === 0" class="btn btn-default"
+        ng-click="InitCreatePrices()"> 创建初始表格 </button>

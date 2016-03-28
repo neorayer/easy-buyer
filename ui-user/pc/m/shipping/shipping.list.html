@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="shipping in shippings">
+    <tr ng-repeat="shipping in shippings|filter:search">
       <td>
         <a ui-sref="shipping.one.detail({shipping:shipping._id})">{{shipping.name}}</a>
       </td>

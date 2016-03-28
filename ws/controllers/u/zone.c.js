@@ -51,7 +51,10 @@ exports.Create = function(req, res) {
 }
 
 exports.Search = function(req, res) {
-    var condition = {company: req.session.company};
+    var condition = {
+        company: req.session.company,
+        shipping: req.query.shipping,
+    };
     var fields = null;
     var option = {
         sort: {created: 1}, 
@@ -64,8 +67,11 @@ exports.Search = function(req, res) {
 
 
 exports.Delete = function(req, res) {
-    return  Zone.findOneAndRemove({
+    return  Zone.findOne({
         _id: req.params.id, 
         company: req.session.company
-    }).exec();
+    }).exec()
+      .then(function(zone){
+        return zone.Delete();
+      });
 }

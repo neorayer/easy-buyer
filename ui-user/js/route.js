@@ -42,9 +42,10 @@ app.config(function($stateProvider){
     sc.createStates('oppt', 'oppt');
     sc.createStates('oppt', 'oppt.one.document');
     sc.createStates('shipping', 'shipping');
-    sc.createStates('shipping', 'shipping.zone');
-    sc.createStates('shipping', 'shipping.destZone');
-    sc.createStates('shipping', 'shipping.price');
+    sc.createStates('shipping', 'shipping.one.zone');
+    sc.createStates('shipping', 'shipping.one.destZone');
+    sc.createStates('shipping', 'shipping.one.price');
+    sc.createStates('shipping', 'shipping.calculator');
     sc.createStates('mbox', 'mbox');
     sc.createStates('mbox', 'mbox.one.message');
     sc.createStates('payment', 'payment');
