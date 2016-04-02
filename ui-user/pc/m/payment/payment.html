@@ -1,13 +1,17 @@
 <nav class=" navbar-default">
   <div class="container-fluid">  
     <div class="navbar-header">
-      <a class="navbar-brand"> 公司客户管理 </a>
+      <a class="navbar-brand"> 支付方式管理 </a>
     </div>
 
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li ng-class="{active:('payment.paypal'|includedByState)}">
-
+        <li ng-class="{active:$state.includes('payment.bankacc')}">
+          <a ui-sref="payment.bankacc.list">
+              银行帐号
+          </a>
+        </li>
+        <li ng-class="{active:$state.includes('payment.paypal')}">
           <a ui-sref="payment.paypal.list">
             <img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.svg" style="height:20px">
           </a>

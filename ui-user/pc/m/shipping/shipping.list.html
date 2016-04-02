@@ -1,0 +1,28 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>自定义名称</th>
+      <th></th>
+      <th>类型</th>
+      <th>物流品牌</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="shipping in shippings|filter:search">
+      <td>
+        <a ui-sref="shipping.one.detail({shipping:shipping._id})">{{shipping.name}}</a>
+      </td>
+      <td>
+        <a ui-sref="shipping.one.edit({shipping:shipping._id})"><i class="fa fa-pencil"></i></a>
+      </td>
+      <td>{{shipping.type|Dict:'ShippingType'}}</td>
+      <td>{{shipping.brand}}</td>
+      <td>
+        <button class="btn btn-round btn-xs btn-danger" ng-click="Delete(shipping)">删除</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-default"
+        ui-sref="shipping.one.edit({shipping: 'new'})">新建物流方式</button>

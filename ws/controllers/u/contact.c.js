@@ -40,7 +40,7 @@ exports.Update = function(req, res) {
 
     var condition = {_id: _id, company: req.session.company};
 
-    return Contact.findOneAndUpdate(condition, doc).exec();
+    return Contact.findOneAndUpdate(condition, doc, {new: true}).exec();
 }
 
 exports.Create = function(req, res) {

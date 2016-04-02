@@ -1,1 +1,14 @@
+<ul class="nav nav-tabs">
+  <li class="disabled">
+    <a >
+      <strong class="text-warning">{{shipping.name}}</strong>
+    </a>
+  </li>
+  <li ng-repeat="tab in shippingOneTabs" 
+      ng-if="!tab.isDisabled"
+      ng-class="{active: ($state.includes(tab.stateGroup))}">
+    <a ui-sref="{{tab.state}}">{{tab.text}}</a>
+  </li>
+</ul>
+<br/>
 <ui-view></ui-view>

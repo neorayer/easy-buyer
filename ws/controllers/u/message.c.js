@@ -41,7 +41,7 @@ exports.Update = function(req, res) {
 
     var condition = {_id: _id, company: req.session.company};
 
-    return Message.findOneAndUpdate(condition, doc).exec();
+    return Message.findOneAndUpdate(condition, doc, {new: true}).exec();
 }
 
 exports.Create = function(req, res) {

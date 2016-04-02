@@ -1,7 +1,7 @@
 'use strict'
 
 var mongoose = require('mongoose')
-    , LogiPrice = mongoose.model('LogiPrice')
+    , Shipping = mongoose.model('Shipping')
     , Q = require('q')
     
     , _ = require('lodash')
@@ -40,35 +40,35 @@ exports.Update = function(req, res) {
 
     var condition = {_id: _id, company: req.session.company};
 
-    return LogiPrice.findOneAndUpdate(condition, doc, {new: true}).exec();
+    return Shipping.findOneAndUpdate(condition, doc, {new: true}).exec();
 }
 
 exports.Create = function(req, res) {
-    var logiPrice = new LogiPrice(req.body);
-    logiPrice.company = req.session.company;
+    var shipping = new Shipping(req.body);
+    shipping.company = req.session.company;
 
-    return logiPrice.Save();
+    return shipping.Save();
 }
 
 exports.Search = function(req, res) {
-    var condition = {
-        company: req.session.company,
-        shipping: req.query.shipping,
-    };
+    var condition = {company: req.session.company};
+    _.extend(condition, req.query);
+    _
     var fields = null;
     var option = {
         sort: {created: 1}, 
         lean: true,
     };
-
-    return LogiPrice.find(condition, fields, option).exec();
-
+    return Shipping.find(condition, fields, option).exec();
 }
 
 
 exports.Delete = function(req, res) {
-    return  LogiPrice.findOneAndRemove({
+    return Shipping.findOne({
         _id: req.params.id, 
         company: req.session.company
-    }).exec();
+    }).exec().then(function(shipping){
+        return shipping.Delete();
+    });
+
 }

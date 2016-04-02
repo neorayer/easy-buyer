@@ -12,6 +12,10 @@ var DestZoneSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Company',
     },
+    shipping: {
+        type: Schema.Types.ObjectId,
+        ref: 'Shipping',
+    },
     destCode: String,
     zone: {
         type: Schema.Types.ObjectId,

@@ -41,7 +41,7 @@ exports.Update = function(req, res) {
 
     var condition = {_id: _id, company: req.session.company};
 
-    return Product.findOneAndUpdate(condition, doc).exec();
+    return Product.findOneAndUpdate(condition, doc, {new: true}).exec();
 }
 
 exports.Create = function(req, res) {

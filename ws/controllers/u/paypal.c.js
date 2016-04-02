@@ -40,14 +40,14 @@ exports.Update = function(req, res) {
 
     var condition = {_id: _id, company: req.session.company};
 
-    return Paypal.findOneAndUpdate(condition, doc).exec();
+    return Paypal.findOneAndUpdate(condition, doc,  {new: true}).exec();
 }
 
 exports.Create = function(req, res) {
-    var contact = new Paypal(req.body);
-    contact.company = req.session.company;
+    var paypal = new Paypal(req.body);
+    paypal.company = req.session.company;
 
-    return contact.Save();
+    return paypal.Save();
 }
 
 exports.Search = function(req, res) {

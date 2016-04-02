@@ -1,0 +1,38 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>国家 Country</th>
+      <th>银行名称 Bank name</th>
+      <th>SWIFT/BIC code</th>
+      <th>账户名称 Account holder name/CTC</th>
+      <th>账号 Account number</th>
+      <th>收款人地址 Address</th>
+      <th>备注 Description</th>
+      <th>状态</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="bankacc in bankaccs">
+      <td>{{bankacc.country}}</td>
+      <td>
+        <a ui-sref="payment.bankacc.one.edit({bankacc:bankacc._id})"><i class="fa fa-pencil"></i></a>
+      </td>
+      <td>{{bankacc.bankName}}</td>
+      <td>{{bankacc.swift}}</td>
+      <td>{{bankacc.accName}}</td>
+      <td>{{bankacc.accNumber}}</td>
+      <td>
+        {{bankacc.address}}
+        {{bankacc.city}}
+        {{bankacc.state}}
+        {{bankacc.postcode}}
+      </td>
+      <td>{{bankacc.description}}</td>
+      <td>
+        <a href ng-click="Delete(bankacc)"><i class="fa fa-trash-o"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-success" ui-sref="payment.bankacc.one.edit({bankacc:'new'})">新增银行帐号</button>

@@ -24,4 +24,9 @@ app.run(function($rootScope, Dict){
         {k: 'factory', v: '制造商'},
         {k: 'trader', v: '贸易公司'},
     ]);
+    Dict.CreateDict('ShippingType', [
+        {k: 'express', v: '快递'},
+        {k: 'air', v: '空运'},
+        {k: 'ocean', v: '海运'},
+    ]);
 });

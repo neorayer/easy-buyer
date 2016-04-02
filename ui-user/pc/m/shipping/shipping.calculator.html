@@ -1,0 +1,45 @@
+<br/>
+<div class="panel panel-default" style="width:600px">
+  <div class="panel-heading">
+    <strong>基本信息</strong>
+  </div>
+
+  <div class="row">
+    <form name="theForm" class="col-sm-12 form-horizontal">
+      <div zform-row="row"
+           ng-repeat="row in formRows"
+           ng-model="formCalc">
+      </div>
+    </form>
+  </div>
+
+</div> <!-- boxed end -->
+
+<div class="panel panel-default" style="width:600px">
+  <div class="panel-heading">
+    <strong>运费比较</strong>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>物流名称</th>
+        <th>类型</th>
+        <th>重量</th>
+        <th>体积</th>
+        <th>运价</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="shipping in shippings">
+        <td>
+          <a ui-sref="shipping.one.detail({shipping:shipping._id})">{{shipping.name}}</a>
+        </td>
+        <td>{{shipping.type|Dict:'ShippingType'}}</td>
+        <td>{{formCalc.weight}} 公斤</td>
+        <td>{{formCalc.volume}} 立方米</td>
+        <td>{{fees[shipping._id]}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
