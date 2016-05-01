@@ -121,12 +121,19 @@ app.controller('ProductController', function(
                     icon: 'fa fa-home',
                     isDisabled: !canModify,
                 },
-
                 {
                     text: '图片', 
                     color: 'orange',
                     stateGroup:'product.one.picture', 
                     state: 'product.one.picture' + stateParams,
+                    icon: 'fa fa-home',
+                    isDisabled: $scope.isNew || !canModify,
+                },
+                 {
+                    text: '价格', 
+                    color: 'orange',
+                    stateGroup:'product.one.price', 
+                    state: 'product.one.price' + stateParams,
                     icon: 'fa fa-home',
                     isDisabled: $scope.isNew || !canModify,
                 },
@@ -272,6 +279,7 @@ app.controller('ProductOnePriceController', function(
             product.skus = [];
         product.skus.push({
             name: '',
+            weight: 0,
             prices: [{priceType: 'FOB', value: '0.00', } ],
         })
     }
@@ -283,16 +291,10 @@ app.controller('ProductOnePriceController', function(
     }
 
     $scope.AddSkuPrice = function(product, sku) {
-        if ($scope.destAreas.length === 0) {
-            Dialogs.Confirm('没有物流区域，无法添加CIF报价,请先到“物流管理”里添加。','提示');
-            return;
-        }
-
         if (!sku.prices)
             sku.prices = [];
         sku.prices.push({
             priceType: 'CIF',
-            destArea: $scope.destAreas[0]._id,
             value: '0.00',
         });
     }

@@ -139,6 +139,11 @@ app.provider('ControllerHelper', function(){
                     })
                 }
 
+                var Errhandler = function(err) {
+                    console.error(err);
+                    alert(err);
+                };
+
                 $scope.DeleteChecked = function() {
                     return Dialogs.Confirm("是否确认删除所选的" + modelLabel + "?", "删除确认")
                     .then(function(isYes){
@@ -155,7 +160,6 @@ app.provider('ControllerHelper', function(){
                 }
 
                 $scope.Save = function(data) {
-
                     return  $scope.SimpleSave(data).catch(Errhandler);
                 }
 

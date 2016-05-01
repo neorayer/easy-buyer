@@ -20,11 +20,7 @@ var AddressSchema = mongoose.Schema({
     streetLine2: String,
     phone: String,
     isPrimary: Boolean,
-    receiver : {
-        first: String,
-        mid: String,
-        last: String,
-    }
+    receiver : String,
 });
 
 //将某个addr设置为该用户的primary address

@@ -175,7 +175,8 @@ var InitModelFactory = function(app) {
                 cond: cond,
                 filter: filter,
             }).then(function(items){
-                items.forEach(function(item) {rsc[conKey].push(item);})
+                items.forEach(function(item) {rsc[conKey].push(item);});
+                return items;
             });
         };
 

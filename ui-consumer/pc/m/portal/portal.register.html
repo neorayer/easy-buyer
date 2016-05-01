@@ -1,0 +1,46 @@
+<div ng-init="SetMenu('portal.register')"></div>
+
+<div
+     class="clearfix"
+     style="margin:auto;width:990px;background-color:#eee;padding:20px 10px;">
+  <div class="col-sm-5">
+    <login-form state-path="/product/list" login-rs="ConsumerSigninRS"></login-form>
+
+
+  </div>
+
+  <div class="col-sm-1">
+  </div>
+
+  <div class="col-sm-6">
+    <form name="registerForm" 
+          ng-hide="isHideRegisterForm"
+          class="form-horizontal">
+      <fieldset>
+        <legend>Create Your Account, for FREE!</legend>
+          <div zform-row="row" 
+               ng-repeat="row in formRows1"
+               ng-model="formConsumer" 
+               >
+          </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Add your Contact Information</legend>
+          <div zform-row="row" 
+               ng-repeat="row in formRows2"
+               ng-model="formConsumer" 
+               >
+          </div>
+      </fieldset>
+
+      <fieldset>
+          <div zform-row="row" 
+               ng-repeat="row in formRows3"
+               ng-model="formConsumer" 
+               >
+          </div>
+      </fieldset>
+  </div>
+
+</div>

@@ -1,0 +1,102 @@
+<table>
+  <tr>
+    <td>
+    <div style="width:300px">
+      <img style="width:100%;max-height:200px" ng-src="{{product.pictures[0].src}}">
+    </div>
+
+    </td>
+    <td style="padding:10px">
+      <div class="boxed no-padding">
+        <div class="inner">
+          <div class="title-bar">
+            <h3>{{product.name}}</h3>
+          </div>
+            <table propitems attrs="productAttrs" filter="{prop: true}" ng-model="product" class="property-table">
+          </table> 
+        </div> <!-- inner end -->
+      </div> <!-- boxed end -->
+
+    </td>
+  </tr>
+</table>
+
+  <table class="table ">
+    <thead>
+      <tr>
+        <th>SKU-Pack Size</th>
+        <th>Weight</th>
+        <th>Price Type</th>
+        <th>Price(USD)</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat-start="sku in product.skus">
+      <tr ng-repeat="price in sku.prices" ng-init="destArea=Cache.get(price.destArea);price.quantity=0">
+        <!-- sku name -->
+        <td rowspan="{{sku.prices.length}}"
+            ng-if="$index===0"> 
+          {{sku.name}}
+        </td>
+        <!-- price.weight -->
+        <td rowspan="{{sku.prices.length}}"
+            ng-if="$index===0"> 
+          {{sku.weight}}
+        </td>
+
+        <!-- price.priceType -->
+        <td>
+          {{price.priceType}}
+        </td>
+        <!-- price.value -->
+        <td> 
+            {{price.value}}
+        </td>
+        <!-- price quantity -->
+        <td>
+            <input style="border:1px solid black;width:50px;text-align:center;color:#999" type="number" ng-model="price.quantity">
+        </td>
+      </tr>
+    </tbody>
+    <tbody ng-repeat-end>
+      <tr>
+        <td class="seperator" colspan="5" style="background-color:#ccc"></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="padding:4px">
+    <button class="btn btn-success pull-right" ng-click="AddToCart(product)"><i class="fa fa-shopping-cart"></i> ADD TO CART </button>
+    <button style="margin-right:8px" class="btn btn-info pull-right" ui-sref="contact"><i class="fa fa-envelope-o"></i> Contact Supplier</button>
+  </div>
+
+
+<div style="margin-top:10px;padding:10px">
+  <h3>Description</h3>
+  <div ng-bind-html="product.description"></div>
+</div>
+
+<div style="margin-top:10px">
+<h3>Documents</h3>
+<table  class="table">
+  <tr>
+    <th></th>
+    <th>文件名</th>
+    <th>类型</th>
+    <th style="width:200px">大小</th>
+    <th style="width:100px"></th>
+  </tr>
+  <tbody>
+    <tr ng-repeat="doc in product.documents" ng-init="ftInfo = FileTypeServ.GetInfo(doc.type)">
+      <td><i class="{{ftInfo.icon}}"></i></td>
+      <td><a href ng-click="OpenDocument(doc)">{{doc.name}}</a></td>
+      <td><a href ng-click="OpenDocument(doc)">{{ftInfo.name}}</a></td>
+      <td><a href ng-click="OpenDocument(doc)">{{doc.size | bytes}}</a></td>
+      <td>
+        <div>
+          <a href ng-click="OpenDocument(doc)"><i class="fa fa-download"></i></a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

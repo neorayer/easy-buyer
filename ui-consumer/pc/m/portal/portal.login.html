@@ -1,0 +1,19 @@
+<br/>
+<br/>
+<form name="loginForm" 
+      novalidate
+      class="form-horizontal" 
+      ng-show="!SESSION_USER" 
+      style="border:1px solid #ccc;max-width:600px;padding:10px;margin:auto"
+      >
+  <fieldset>
+    <legend>Login first, Please.</legend>
+    <div zform-row="row" 
+         ng-repeat="row in formRows"
+         ng-model="formLoginUser" 
+         >
+    </div>
+  </fieldset>
+</form>
+<br/>
+<br/>

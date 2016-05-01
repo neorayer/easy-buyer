@@ -1,0 +1,143 @@
+<login-form state-path="/cart/item" login-rs="ConsumerSigninRS"></login-form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th style="text-align:right">Quantity</th>
+      <th style="text-align:right">Price</th>
+      <th style="text-align:right">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="item in CartServ.Items()">
+      <td>
+        <a href ng-click="CartServ.DeleteItem(item)">
+          <i class="fa fa-remove"></i>
+        </a>
+        <b>{{item.mainName}}</b>
+        <small>{{item.subName}}</small>
+      </td>
+      <td style="text-align:right">
+        <a href ng-click="CartServ.IncQuantity(item, -1)"><i class="fa fa-minus"></i></a>
+        {{item.quantity}}
+        <a href ng-click="CartServ.IncQuantity(item, 1)" ><i class="fa fa-plus"></i></a>
+      </td>
+      <td style="text-align:right">{{item.unitPrice|currency:'$':3}}</td>
+      <td style="text-align:right">{{(item.quantity * item.unitPrice)|currency:'$':3}}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td style="font-weight:bold;text-align:right">Total:</td>
+      <td style="font-weight:bold;text-align:right">{{CartServ.TotalPrice()|currency:'$':3}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Delivery Address -->
+<div class="panel panel-primary" 
+     style="margin-top:10px">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong>Delivery Address</strong></h3>
+  </div>
+  <div class="panel-body">
+    <div ng-if="!addr" style="color:red">Select your deliver address below, please.</div>
+    <address ng-if="addr">
+      <h4>{{addr.receiver.first}} {{addr.receiver.mid}} {{addr.receiver.last}}</h4>
+        {{addr.streetLine1}} <br/>
+        <span ng-if="addr.streetLine2">{{addr.streetLine2}} <br/></span>
+        {{addr.suburb}} {{addr.state}} {{addr.postcode}}  {{addr.country}}<br/>
+        <addr title="Phone">P:</addr> {{addr.phone}}
+    </address>
+  </div>
+</div>
+
+<!-- Checkout Button -->
+<div class="clearfix" style="margin-top:10px">
+  <button class="btn btn-success pull-right"
+          ng-if="!isShowPayment"
+          ng-disabled="!SESSION_USER || !addr" 
+          ng-click="CheckOut()">CHECK OUT</button>
+</div>
+
+
+<!-- Payment -->
+<div ng-if="isShowPayment"
+     class="panel panel-primary" 
+     style="margin-top:10px">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong>Payment Method</strong></h3>
+  </div>
+  <div class="panel-body">
+    <!-- Credit Card -->
+    <div style="border-bottom:1px solid #ccc">
+      <h4><strong>Credit Card</strong></h4>
+      <form>
+        <div class="form-group">
+          <label>Name on card <span style="color:red">*</span></label>
+          <input type="text" class="form-control" placeholder="John Smith">
+        </div>
+        <div class="form-group">
+          <label >Credit Card Number <span style="color:red">*</span></label>
+          <input type="text" class="form-control" placeholder="eg. 8888 5555 1111 8888">
+        </div>
+        <div class="cleanfix row">
+          <div class="form-group col col-md-6">
+            <label>Expiry Date <span style="color:red">*</span></label>
+            <div class="cleanfix row">
+              <div class="col col-md-6">
+                <input type="text"  class="form-control" placeholder="MM">
+              </div>
+              <div class="col col-md-6">
+                <input type="text"  class="form-control" placeholder="YY">
+              </div>
+            </div>
+          </div>
+          <div class="form-group col col-md-6">
+            <label>CVV(?) <span style="color:red">*</span></label>
+            <input type="text"  class="form-control" placeholder="e.g.333">
+          </div>
+        </div>
+        <button type="submit" 
+                class="btn btn-lg btn-success"
+                ng-click="SubmitOrder()">SUBMIT ORDER NOW</button>
+      </form>
+    </div>
+
+    <!-- Paypal -->
+    <div style="border-bottom:1px solid #ccc;padding:10px 0px;">
+      <h4><strong>Paypal</strong></h4>
+      <a href="https://www.paypal.com/au/webapps/mpp/accept-payments-online">
+        <img src="https://www.paypalobjects.com/webstatic/mktg/merchant/images/express-checkout-hero.png" style="width:220px">
+      </a>
+    </div>
+
+    <!-- Bank transfer -->
+    <div style="border-bottom:1px solid #ccc;padding:10px 0px;">
+      <h4><strong>Bank Transfer</strong></h4>
+      <div>
+        <label>Bank:</label> China Merchants Bank 
+      </div>
+      <div>
+        <label>Branch:</label> Hongkou Ouyang Branch
+      </div>
+      <div>
+        <label>Account Name:</label> Shanghai Renyoung Pharmaceutical Co., Ltd.
+      </div>
+      <div>
+        <label>Account Number:</label> 4392 5833 2304 334332 
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<hr/>
+
+<!-- Addresss Select Options -->
+<ng-include src="'/ui-consumer/pc/m/setting/setting.address.html'"
+            ng-controller="SettingAddressController"
+            ng-if="!isShowPayment"
+            ></ng-include>

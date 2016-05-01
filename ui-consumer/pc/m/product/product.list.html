@@ -1,0 +1,14 @@
+<div>
+<input type="text" ng-model="keyword" my-enter="SearchProducts(keyword)"><button ng-click="SearchProducts(keyword)">Search</button>
+</div>
+<div ng-repeat="product in products"
+     style="width:200px;float:left;margin:8px">
+    <a href ui-sref="product.one({product:product._id})">
+      <div style="width:100%;height:180px;border:1px solid #ccc;">
+        <img style="width:100%;" ng-src="{{product.pictures[0].thumbSrc}}">
+      </div>
+    </a>
+    <div style="height:40px;overflow:hidden">
+      <a href ui-sref="product.one({product:product._id})">{{product.name}}</a>
+    </div>
+</div>

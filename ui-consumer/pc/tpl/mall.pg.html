@@ -1,0 +1,13 @@
+<html>
+<% include head.part.html %>
+<body>
+<h1>ChemiMaster Platform </h1>
+<ul>
+<% for (var i=0; i<companies.length; i++) { var company=companies[i];%>
+<li><a href="company/<%=company._id %>#/product/list"><%= company.name %></a></li>
+<% } %>
+</ul>
+
+</body>
+
+</html>
