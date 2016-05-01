@@ -2,7 +2,6 @@
 
 var mongoose    = require('mongoose')
     , _         = require('lodash')
-    , ak    = require('../../../zjs/army-knife.js')
     , Q         = require('q')
 
     , Consumer      = mongoose.model('Consumer')
