@@ -3,9 +3,9 @@
         <thead>
           <tr>
             <th style="width:30px"></th>
-            <th>SKU-Pack Size</th>
+            <th>SKU名称</th>
+            <th>重量</th>
             <th>报价类型</th>
-            <th>发货区域 (<a href ui-sref="shipping.destArea.list" >编辑</a>)</th>
             <th>价格(USD)</th>
           </tr>
         </thead>
@@ -25,6 +25,13 @@
                      ng-model="sku.name" 
                      ng-blur="SaveSku(product)">
             </td>
+            <!-- sku weight -->
+            <td rowspan="{{sku.prices.length}}"
+                ng-if="$index===0"> 
+              <input type="text"
+                     ng-model="sku.weight"
+                     ng-blur="SaveSku(product)">
+            </td>
             <!-- price.priceType -->
             <td>
               <select ng-model="price.priceType" 
@@ -32,14 +39,6 @@
                 <option>FOB</option> 
                 <option>CIF</option> 
                 <option>CNF</option> 
-              </select>
-            </td>
-            <!-- price.destArea -->
-            <td> 
-              <select ng-if="price.priceType !== 'FOB'"
-                      ng-model="price.destArea"
-                      ng-change="SaveSku(product)"
-                      ng-options="destArea._id as destArea.name for destArea in destAreas">
               </select>
             </td>
             <!-- price.value -->
@@ -69,6 +68,8 @@
                 <i class="fa fa-plus"></i>增加报价
               </button>
             </td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
         <tbody ng-repeat-end>

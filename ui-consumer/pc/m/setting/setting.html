@@ -1,0 +1,29 @@
+<div ng-init="SetMenu('setting')"></div>
+
+<table style="width:100%">
+  <tr>
+    <td valign="top" style="width:250px;border-right:1px solid #ccc">
+      <h2>Account Setting</h2>
+      <ul>
+        <li>
+          <a href ui-sref="setting.password" >
+            Change Password
+          </a>
+        </li>
+        <li>
+          <a href ui-sref="setting.profile">
+            My Profile
+          </a>
+          </li>
+        <li>
+          <a href ui-sref="setting.address">
+            Delivery Addresses
+          </a>
+        </li>
+      </ul>
+    </td>
+    <td valign="top" style="padding:10px">
+      <ui-view></ui-view>
+    </td>
+  </tr>
+</table>

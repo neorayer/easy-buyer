@@ -8,7 +8,15 @@ var fs = require('fs')
 module.exports = {
     dbname: 'rhinoceros2',
     httpPort: 80,
-    staticPaths: ['bower_components', 'ui-user', 'ui-admin', 'zjs', 'lib', 'theme'],
+    staticPaths: [
+        'bower_components', 
+        'ui-user', 
+        'ui-consumer', 
+        'ui-admin', 
+        'zjs', 
+        'lib', 
+        'theme'
+    ],
 
 }
 

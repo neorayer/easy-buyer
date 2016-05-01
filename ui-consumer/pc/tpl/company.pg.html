@@ -1,0 +1,80 @@
+<html>
+<% include head.part.html %>
+
+
+<body ng-app="rhino_consumer">
+
+  <div style="width:900px;min-height:400px;margin:0 auto;background-color:white" ng-controller="PortalController">
+    <!-- Cart Summary -->
+    <div class=" pull-right" style="width:180px">
+      <div class="col-md-4 text-right">
+        <a href ui-sref="cart">
+          <i class="fa fa-shopping-cart" style="font-size:34px"></i>
+        </a>
+      </div>
+      <div class="col-md-8 ng-binding">
+        <a href ui-sref="cart.item">
+          {{CartServ.ItemsCount()}}
+          <ng-pluralize count="CartServ.ItemsCount()" when="{1: 'item', 'other':'items'}">items</ng-pluralize>
+          {{CartServ.TotalPrice()|currency:'$'}}
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <a href="" ng-click="GoHome()">
+        <h3>{{COMPANY.name}} <small>Online Shop 
+        <small>v 0.9 beta</small></small>
+        <small ng-if="SESSION_USER">
+          <small class="text-primary">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Hi, 
+              {{SESSION_USER.fullname.first}}
+              {{SESSION_USER.fullname.mid}}
+              {{SESSION_USER.fullname.last}}
+          </small>
+        </small>
+        </h3>
+      </a>
+      <!-- main menu -->
+      <div>
+        <ul class="nav nav-tabs nav-justified">
+          <li ng-class="{active:IsMenu('product')}">
+            <a href ui-sref="product.list">Products</a> 
+          </li>
+          <li ng-class="{active:IsMenu('cart')}">
+            <a href ui-sref="cart.item">Cart</a> 
+          </li>
+          <li ng-class="{active:IsMenu('contact')}">
+            <a href ui-sref="contact">Contact Us</a> 
+          </li>
+          <li ng-if="SESSION_USER" ng-class="{active:IsMenu('setting')}">
+            <a href ui-sref="setting"> Setting</a> 
+          </li> 
+
+          <li ng-if="SESSION_USER">
+            <a href ng-click="Logout()">Sign out</a>
+          </li>
+          <li  ng-if="!SESSION_USER"
+               ng-class="{active:IsMenu('portal.register')}" >
+            <a href ui-sref="portal.register">Sign in</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="clearfix">
+      <ui-view></ui-view>
+    </div>
+
+    <div>
+      <br/><br/><br/><br/>
+      <hr/>
+      Powered by ChemiMaster System.
+      <br/><br/><br/><br/>
+    </div>
+  </div>
+</body>
+</html>

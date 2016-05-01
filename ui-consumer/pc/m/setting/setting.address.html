@@ -1,0 +1,56 @@
+<h4>Addresses</h4>
+<button class="btn btn-success" ng-click="ShowAddAddress()">New Address</button>
+<br/><br/>
+
+<form name="addressForm" 
+      novalidate
+      ng-show="isShowEditor"
+      class="form-horizontal" 
+      >
+  <fieldset>
+    <legend>Change Password</legend>
+    <div zform-row="row" 
+         ng-repeat="row in formRows"
+         ng-model="formAddress" 
+         >
+    </div>
+  </fieldset>
+</form>
+
+<div ng-repeat="addr in addresss">
+  <div class="clearfix" style="border:1px solid #ccc;padding:10px;margin-bottom:20px">
+    <div class="col col-md-7">
+      <h5 class="text-primary"
+          ng-if="addr.isPrimary">
+            <strong>PRIMARY ADDRESS</strong>
+      </h5>
+      <address>
+        <h4>{{addr.receiver.first}} {{addr.receiver.mid}} {{addr.receiver.last}}</h4>
+          {{addr.streetLine1}} <br/>
+          <span ng-if="addr.streetLine2">{{addr.streetLine2}} <br/></span>
+          {{addr.suburb}} {{addr.state}} {{addr.postcode}}  {{addr.country}}<br/>
+          <addr title="Phone">P:</addr> {{addr.phone}}
+      </address>
+    </div>
+    <div class="col col-md-5">
+      <button class="btn btn-xs btn-default pull-right"
+              ng-click="ShowEditAddress(addr)">Edit</button> 
+      <button class="btn btn-xs btn-default pull-right"
+              ng-click="Delete(addr)"
+              style="margin-right:4px">Remove</button>
+      <button class="btn btn-xs btn-default pull-right"
+              ng-click="SetPrimary(addr)"
+              style="margin-right:4px" 
+              >Set as Primary</button>
+
+      <div style="clear:both;padding-top:10px">
+        <button class="btn btn-info pull-right"
+                ng-if="SelectAddress"
+                ng-click="SelectAddress(addr)"
+                
+                >Select This Address</button>
+      </div>
+    </div>
+  </div>
+
+</div>

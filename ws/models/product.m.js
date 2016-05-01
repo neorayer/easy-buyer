@@ -30,12 +30,9 @@ var ProductSchema = mongoose.Schema({
     skus: [
         {
             name: String,
+            weight: Number,
             prices: [{
                 priceType: String,
-                destArea: {
-                    type: Schema.Types.ObjectId,
-                    ref: 'DestArea',
-                },
                 value: Number,
             }],
         }
